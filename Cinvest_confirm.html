@@ -30,7 +30,7 @@
         <img src="永續智能投資圖片/流程（右上角）/流程透明度 中-4.png" width="150%" style="margin-right: 10em;margin-top: -1.5em;">
     </div>
 
-    <img src="永續智能投資圖片/robot_judy.png" style="float: left; z-index: -100; margin-top: 2em;" width="5%">
+    <img src="永續智能投資圖片/Rachel.png" style="float: left; z-index: -100; margin-top: 2em;" width="5%">
 
     <div class="wrapper3">
         <h1 style="color: #38566A; margin-bottom: 15px; font-size: 15pt;">確認投資內容</h1>
@@ -38,13 +38,13 @@
 
     <form action="Cinvest_confirm_check.html">
         <div class="confirm_frame" style="margin-top: 0;">
-            <p style="font-size: 13pt; color: #465765; margin-top: -1em; font-weight:bold;">請輸入本次目標計劃於以下內容</p>
+            <p style="font-size: 13pt; color: #465765; margin-top: -1em; font-weight:bold;">請輸入您這次的目標計畫喔</p>
             <div class="flex_3">
                 <div class="item_3">
                     <!-- <form style="font-size: 13pt;"> -->
                     <blockquote>
                         <p style="font-weight: bold; margin-top: 0em;">名稱</p>
-                        <input type="text" id="inputName" class="inputbox2" required>
+                        <span class="showName"></span>
                     </blockquote>
                     <!-- </form> -->
                 </div>
@@ -53,7 +53,7 @@
                     <!-- <form style="font-size: 13pt;"> -->
                     <blockquote>
                         <p style="font-weight: bold; margin-top: 0em;">目標金額</p>
-                        <input type="text" id="inputMoney" class="inputbox2" required> 元
+                        <span class="showMoney"></span>元
                     </blockquote>
                     <!-- </form> -->
                 </div>
@@ -61,7 +61,7 @@
                     <!-- <form style="font-size: 13pt;"> -->
                     <blockquote>
                         <p style="font-weight: bold; margin-top: 0em;">預計投資年限</p>
-                        <input type="text" id="inputTime" class="inputbox2" required> 年
+                        <span class="showTime"></span>年
                     </blockquote>
                     <!-- </form> -->
                 </div>
@@ -69,14 +69,14 @@
 
             <hr>
 
-            <p style="font-size: 13pt; color: #465765; margin-top: 2em; font-weight:bold;">請輸入本次申購資訊於以下內容</p>
+            <p style="font-size: 13pt; color: #465765; margin-top: 2em; font-weight:bold;">接著，請輸入您這次的申購資訊喔</p>
             <div class="flex_3">
                 <div class="item_3">
                     <!-- <form style="font-size: 13pt;"> -->
                     <blockquote>
-                        <p style="font-weight: bold; margin-top: 0em;">投資方式</p>
-                        <input value='單筆投資' type="radio" name="erarbeiten">單筆投資 &emsp;
-                        <input value='定期定額' type="radio" name="erarbeiten">定期定額
+                        <p style="font-weight: bold; margin-top: 0em; margin-bottom: 0.5em;">投資方式</p>
+                        <input value='一筆錢一次投入' type="radio" name="erarbeiten">一筆錢一次投入<br>
+                        <input value='每月定期投入一筆錢' type="radio" name="erarbeiten">每月定期投入一筆錢
                     </blockquote>
                     <!-- </form> -->
                 </div>
@@ -92,10 +92,7 @@
                     <!-- <form style="font-size: 13pt;"> -->
                     <blockquote>
                         <p style="font-weight: bold; margin-top: 0em;">停利停損通知點</p>
-                        停利停損：±<input type="text" id="inputPercent" class="inputbox"
-                            onkeyup="this.value=this.value.replace(/[^\d]/g,'')" placeholder="10" required
-                            style="width: 3em; margin-left: 1em; margin-top: -2.5em;">
-                        <p style="margin-left: 9em; margin-top: -1.5em;">%</p>
+                        停利停損：± 10 ％
                     </blockquote>
                     <!-- </form> -->
                 </div>
@@ -106,7 +103,7 @@
                     <!-- <form style="font-size: 13pt;"> -->
                     <blockquote>
                         <p style="font-weight: bold; margin-top: 0em;">個人風險屬性</p>
-                        <p>保守型</p>
+                        <p>積極型</p>
                     </blockquote>
                     <!-- </form> -->
                 </div>
@@ -114,7 +111,7 @@
                     <!-- <form style="font-size: 13pt;"> -->
                     <blockquote>
                         <p style="font-weight: bold; margin-top: 0em;">扣款帳號</p>
-                        <select>
+                        <select style="width: 100%;">
                             <option>000012345678【營業部永續活期儲蓄存款】－新台幣</option>
                         </select>
                     </blockquote>
@@ -127,7 +124,7 @@
 
             <hr>
 
-            <p style="font-size: 13pt; color: #465765; margin-top: 2em; font-weight:bold;">請查看本次投資組合</p>
+            <p style="font-size: 13pt; color: #465765; margin-top: 2em; font-weight:bold;">再來，麻煩您看一下這次的投資組合</p>
 
             <div class="flex_3">
                 <div class="item_3">
@@ -187,6 +184,7 @@
             </div>
         </div>
 
+
         <br>
 
         <!-- <div style="text-align:center;" onclick="location.href='invest_confirm_check.html'">
@@ -206,33 +204,41 @@
 
     <script>
 
-        document.getElementById("inputName").value = localStorage.getItem("Name");
-        document.getElementById("inputMoney").value = localStorage.getItem("Money");
-        document.getElementById("inputTime").value = localStorage.getItem("Time");
         document.getElementById("inputiMoney").value = localStorage.getItem("iMoney");
         var call = document.querySelector('.btnCall');
-        var str = localStorage.getItem('Name');
-        var str2 = localStorage.getItem('Money');
-        var str3 = localStorage.getItem('Time');
-        var str4 = localStorage.getItem('iMoney');
 
         var btn = document.querySelector('#btn');
 
         function setInputItem(e) {
-            var str = document.querySelector("#inputName").value; //選擇到表單輸入的值
-            var str2 = document.querySelector("#inputMoney").value;
-            var str3 = document.querySelector("#inputTime").value;
-            var str4 = document.querySelector("#inputiMoney").value;
-            var str5 = document.querySelector("#inputPercent").value;
 
-            localStorage.setItem("Name", str); //存入 localStorage
-            localStorage.setItem("Money", str2);
-            localStorage.setItem("Time", str3);
+            var str4 = document.querySelector("#inputiMoney").value;
+
             localStorage.setItem("iMoney", str4);
-            localStorage.setItem("Percent", str5);
+
         }
         console.log(str5);
 
+
+    </script>
+
+    <script>
+        function showName() {
+            let nameDom = document.querySelector('.showName')
+            nameDom.innerHTML = localStorage.getItem('Name')
+        }
+        showName();
+
+        function showMoney() {
+            let nameDom = document.querySelector('.showMoney')
+            nameDom.innerHTML = localStorage.getItem('Money')
+        }
+        showMoney();
+
+        function showTime() {
+            let nameDom = document.querySelector('.showTime')
+            nameDom.innerHTML = localStorage.getItem('Time')
+        }
+        showTime();
 
     </script>
 
